@@ -32,3 +32,8 @@ jobs:
             code=$(curl -s -o /dev/null -m 10 -w "%{http_code}" "$u" || echo "fail")
             echo "$u -> $code"
           done
+
+      - name: Speed test
+        run: |
+          pip install -q speedtest-cli 2>/dev/null || pip3 install -q --break-system-packages speedtest-cli
+          python3 -m speedtest --simple --secure || echo "speedtest failed"

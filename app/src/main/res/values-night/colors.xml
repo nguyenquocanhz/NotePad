@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="brand_primary">#BAC3FF</color>
-    <color name="brand_on_primary">#08218A</color>
-    <color name="brand_primary_container">#2A3BA0</color>
-    <color name="brand_on_primary_container">#DEE0FF</color>
+    <color name="brand_primary">#7FA6FF</color>
+    <color name="brand_on_primary">#00215E</color>
+    <color name="brand_primary_container">#1F3D85</color>
+    <color name="brand_on_primary_container">#DCE6FF</color>
+
+    <color name="oneui_bg">#000000</color>
+    <color name="oneui_card">#171717</color>
+    <color name="oneui_text">#FAFAFA</color>
+    <color name="oneui_text_secondary">#A3A3A3</color>
+    <color name="oneui_divider">#2C2C2C</color>
+    <color name="oneui_chip">#2A2A2A</color>
+    <color name="oneui_outline">#8E8E8E</color>
+    <color name="oneui_container_low">#0E0E0E</color>
+    <color name="oneui_container_highest">#262626</color>
+    <color name="badge_bg">#1F3D85</color>
+    <color name="badge_text">#DCE6FF</color>
 </resources>

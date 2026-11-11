@@ -5,11 +5,110 @@
         <item name="colorOnPrimary">@color/brand_on_primary</item>
         <item name="colorPrimaryContainer">@color/brand_primary_container</item>
         <item name="colorOnPrimaryContainer">@color/brand_on_primary_container</item>
+        <item name="colorSecondaryContainer">@color/oneui_chip</item>
+        <item name="colorOnSecondaryContainer">@color/oneui_text</item>
+
+        <item name="android:colorBackground">@color/oneui_bg</item>
+        <item name="android:windowBackground">@color/oneui_bg</item>
+        <item name="colorSurface">@color/oneui_bg</item>
+        <item name="colorOnSurface">@color/oneui_text</item>
+        <item name="colorOnSurfaceVariant">@color/oneui_text_secondary</item>
+        <item name="colorSurfaceContainerLowest">@color/oneui_card</item>
+        <item name="colorSurfaceContainerLow">@color/oneui_container_low</item>
+        <item name="colorSurfaceContainer">@color/oneui_card</item>
+        <item name="colorSurfaceContainerHigh">@color/oneui_card</item>
+        <item name="colorSurfaceContainerHighest">@color/oneui_container_highest</item>
+        <item name="colorOutline">@color/oneui_outline</item>
+        <item name="colorOutlineVariant">@color/oneui_divider</item>
     </style>
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/splash_background</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
         <item name="postSplashScreenTheme">@style/Theme.NotePad</item>
+    </style>
+
+    <!-- One UI text -->
+    <style name="TextAppearance.OneUi.LargeTitle" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="android:textSize">36sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/oneui_text</item>
+    </style>
+
+    <style name="TextAppearance.OneUi.Subtitle" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/oneui_text_secondary</item>
+    </style>
+
+    <style name="TextAppearance.OneUi.ToolbarTitle" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/oneui_text</item>
+    </style>
+
+    <!-- One UI components -->
+    <style name="ShapeAppearanceOverlay.OneUi.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="Widget.OneUi.Card" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/oneui_card</item>
+        <item name="cardCornerRadius">24dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
+    <style name="Widget.OneUi.BottomAction" parent="Widget.Material3.Button.TextButton.Icon">
+        <item name="iconGravity">top</item>
+        <item name="iconPadding">4dp</item>
+        <item name="iconTint">@color/oneui_text</item>
+        <item name="android:textColor">@color/oneui_text</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">64dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
+    <style name="Widget.OneUi.PillButton" parent="Widget.Material3.Button.TonalButton">
+        <item name="android:minHeight">52dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.OneUi.Circle</item>
+    </style>
+
+    <style name="Widget.OneUi.Segment">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:minWidth">88dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="Widget.OneUi.ListRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="Widget.OneUi.ToolButton">
+        <item name="android:layout_width">44dp</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:scaleType">center</item>
+        <item name="tint">@color/oneui_text</item>
     </style>
 </resources>

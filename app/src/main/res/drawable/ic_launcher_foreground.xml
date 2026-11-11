@@ -10,7 +10,7 @@
         android:pathData="M37,27h30a4,4 0,0 1,4 4v46a4,4 0,0 1,-4 4h-30a4,4 0,0 1,-4 -4v-46a4,4 0,0 1,4 -4z" />
     <!-- Dòng chữ -->
     <path
-        android:fillColor="#3949AB"
+        android:fillColor="#2F6BEB"
         android:pathData="M40,37h24v3h-24zM40,45h24v3h-24zM40,53h15v3h-15z" />
     <!-- Bút -->
     <path

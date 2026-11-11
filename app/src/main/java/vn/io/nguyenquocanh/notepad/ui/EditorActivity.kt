@@ -2,28 +2,36 @@ package vn.io.nguyenquocanh.notepad.ui
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageButton
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.content.edit
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
-import com.google.android.material.color.MaterialColors
+import androidx.core.widget.ImageViewCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import vn.io.nguyenquocanh.notepad.R
 import vn.io.nguyenquocanh.notepad.data.Note
 import vn.io.nguyenquocanh.notepad.data.NoteRepository
 import vn.io.nguyenquocanh.notepad.databinding.ActivityEditorBinding
 import vn.io.nguyenquocanh.notepad.util.applySystemInsets
+import java.text.DateFormat
+import java.util.Date
 
 class EditorActivity : AppCompatActivity() {
 
@@ -36,6 +44,14 @@ class EditorActivity : AppCompatActivity() {
     private var deleted = false
     private var drawMode = false
     private val swatchViews = ArrayList<Pair<View, Int>>()
+
+    private val colorPrimary by lazy { ContextCompat.getColor(this, R.color.brand_primary) }
+    private val colorOnPrimary by lazy { ContextCompat.getColor(this, R.color.brand_on_primary) }
+    private val colorText by lazy { ContextCompat.getColor(this, R.color.oneui_text) }
+    private val colorTextSecondary by lazy { ContextCompat.getColor(this, R.color.oneui_text_secondary) }
+    private val colorChip by lazy { ContextCompat.getColor(this, R.color.oneui_chip) }
+    private val colorCard by lazy { ContextCompat.getColor(this, R.color.oneui_card) }
+    private val colorOutline by lazy { ContextCompat.getColor(this, R.color.oneui_outline) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +76,8 @@ class EditorActivity : AppCompatActivity() {
             b.content.setText(intent.getStringExtra(Intent.EXTRA_TEXT).orEmpty())
             b.title.setText(intent.getStringExtra(Intent.EXTRA_SUBJECT).orEmpty())
         }
+        b.date.text = formatDate(existing?.updatedAt ?: System.currentTimeMillis())
+
         if (existing?.hasDrawing == true) {
             val file = repo.drawingFile(noteId)
             if (file.exists()) {
@@ -69,29 +87,39 @@ class EditorActivity : AppCompatActivity() {
         }
 
         setupDrawingTools()
+        b.segText.setOnClickListener { showMode(false) }
+        b.segDraw.setOnClickListener { showMode(true) }
+        b.actionDraw.setOnClickListener { showMode(true) }
+        b.actionShare.setOnClickListener { share() }
+        b.actionDelete.setOnClickListener { confirmDelete() }
+
         val startDraw = intent.getBooleanExtra(EXTRA_DRAW, false) ||
             (existing != null && existing.hasDrawing && existing.content.isBlank())
-        setupModeToggle(startDraw)
+        showMode(startDraw)
         if (existing == null && !startDraw && savedInstanceState == null) b.content.requestFocus()
     }
 
-    private fun setupModeToggle(startDraw: Boolean) {
-        b.modeToggle.check(if (startDraw) R.id.mode_draw else R.id.mode_text)
-        showMode(startDraw)
-        b.modeToggle.addOnButtonCheckedListener { _, checkedId, isChecked ->
-            if (isChecked) showMode(checkedId == R.id.mode_draw)
-        }
-    }
+    private fun formatDate(time: Long): String =
+        DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(Date(time))
 
     private fun showMode(draw: Boolean) {
         drawMode = draw
         b.textPane.isVisible = !draw
         b.drawPane.isVisible = draw
+        styleSegment(b.segText, !draw)
+        styleSegment(b.segDraw, draw)
         if (draw) {
             currentFocus?.clearFocus()
             WindowCompat.getInsetsController(window, b.root).hide(WindowInsetsCompat.Type.ime())
         }
         invalidateOptionsMenu()
+    }
+
+    private fun styleSegment(view: TextView, selected: Boolean) {
+        view.isSelected = selected
+        view.background = if (selected) ContextCompat.getDrawable(this, R.drawable.bg_pill_thumb) else null
+        view.setTextColor(if (selected) colorText else colorTextSecondary)
+        view.typeface = Typeface.create(if (selected) "sans-serif-medium" else "sans-serif", Typeface.NORMAL)
     }
 
     private fun setupDrawingTools() {
@@ -101,12 +129,12 @@ class EditorActivity : AppCompatActivity() {
         d.penWidth = b.widthSlider.value * density
         b.widthSlider.addOnChangeListener { _, value, _ -> d.penWidth = value * density }
 
-        b.toolToggle.check(R.id.tool_pen)
-        b.toolToggle.addOnButtonCheckedListener { _, checkedId, isChecked ->
-            if (isChecked) d.eraserMode = checkedId == R.id.tool_eraser
-        }
+        b.toolPen.setOnClickListener { setEraser(false) }
+        b.toolEraser.setOnClickListener { setEraser(true) }
+        setEraser(false)
 
         d.stylusOnly = prefs.getBoolean(KEY_STYLUS_ONLY, false)
+        b.stylusBadge.isVisible = d.stylusOnly
 
         b.undo.setOnClickListener { d.undo() }
         b.redo.setOnClickListener { d.redo() }
@@ -124,16 +152,33 @@ class EditorActivity : AppCompatActivity() {
         buildSwatches()
     }
 
+    private fun setEraser(eraser: Boolean) {
+        b.drawing.eraserMode = eraser
+        styleTool(b.toolPen, !eraser)
+        styleTool(b.toolEraser, eraser)
+    }
+
+    private fun styleTool(button: ImageButton, selected: Boolean) {
+        button.isSelected = selected
+        ViewCompat.setBackgroundTintList(button, ColorStateList.valueOf(if (selected) colorPrimary else colorChip))
+        ImageViewCompat.setImageTintList(button, ColorStateList.valueOf(if (selected) colorOnPrimary else colorText))
+    }
+
+    private fun setToolEnabled(button: ImageButton, enabled: Boolean) {
+        button.isEnabled = enabled
+        button.alpha = if (enabled) 1f else 0.35f
+    }
+
     private fun updateUndoRedo() {
-        b.undo.isEnabled = b.drawing.canUndo
-        b.redo.isEnabled = b.drawing.canRedo
-        b.clear.isEnabled = b.drawing.hasContent()
+        setToolEnabled(b.undo, b.drawing.canUndo)
+        setToolEnabled(b.redo, b.drawing.canRedo)
+        setToolEnabled(b.clear, b.drawing.hasContent())
     }
 
     private fun buildSwatches() {
         val density = resources.displayMetrics.density
         val size = (30 * density).toInt()
-        val margin = (8 * density).toInt()
+        val margin = (12 * density).toInt()
         PEN_COLORS.forEachIndexed { index, color ->
             val v = View(this)
             v.layoutParams = LinearLayout.LayoutParams(size, size).apply { marginEnd = margin }
@@ -149,20 +194,30 @@ class EditorActivity : AppCompatActivity() {
 
     private fun selectSwatch(selected: Int) {
         val density = resources.displayMetrics.density
-        val outline = MaterialColors.getColor(b.root, com.google.android.material.R.attr.colorOutline)
-        val primary = MaterialColors.getColor(b.root, androidx.appcompat.R.attr.colorPrimary)
         swatchViews.forEachIndexed { i, (view, color) ->
             val isSel = i == selected
             view.background = GradientDrawable().apply {
                 shape = GradientDrawable.OVAL
                 setColor(color)
-                setStroke(((if (isSel) 3f else 1f) * density).toInt(), if (isSel) primary else outline)
+                if (isSel) {
+                    setStroke((3 * density).toInt(), colorCard)
+                } else {
+                    setStroke(density.toInt().coerceAtLeast(1), colorOutline)
+                }
+            }
+            view.foreground = if (isSel) {
+                GradientDrawable().apply {
+                    shape = GradientDrawable.OVAL
+                    setStroke((2 * density).toInt(), colorPrimary)
+                }
+            } else {
+                null
             }
             view.scaleX = if (isSel) 1.15f else 1f
             view.scaleY = if (isSel) 1.15f else 1f
         }
         b.drawing.penColor = swatchViews[selected].second
-        b.toolToggle.check(R.id.tool_pen)
+        setEraser(false)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -171,6 +226,8 @@ class EditorActivity : AppCompatActivity() {
             isChecked = b.drawing.stylusOnly
             isVisible = drawMode
         }
+        menu.findItem(R.id.action_share).isVisible = drawMode
+        menu.findItem(R.id.action_delete).isVisible = drawMode
         return true
     }
 
@@ -182,6 +239,7 @@ class EditorActivity : AppCompatActivity() {
             val enabled = !item.isChecked
             item.isChecked = enabled
             b.drawing.stylusOnly = enabled
+            b.stylusBadge.isVisible = enabled
             prefs.edit { putBoolean(KEY_STYLUS_ONLY, enabled) }
             Toast.makeText(
                 this,

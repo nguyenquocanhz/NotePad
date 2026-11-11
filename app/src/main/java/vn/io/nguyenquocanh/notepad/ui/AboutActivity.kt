@@ -21,13 +21,14 @@ class AboutActivity : AppCompatActivity() {
         b.root.applySystemInsets()
         setSupportActionBar(b.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         b.version.text = getString(R.string.version_format, BuildConfig.VERSION_NAME)
         b.btnGithub.setOnClickListener { open(getString(R.string.url_github)) }
         b.btnWebsite.setOnClickListener { open(getString(R.string.url_website)) }
-        b.btnSource.setOnClickListener { open(getString(R.string.url_repo)) }
-        b.btnTerms.setOnClickListener { LegalActivity.start(this, LegalActivity.TYPE_TERMS) }
-        b.btnPrivacy.setOnClickListener { LegalActivity.start(this, LegalActivity.TYPE_PRIVACY) }
+        b.rowSource.setOnClickListener { open(getString(R.string.url_repo)) }
+        b.rowTerms.setOnClickListener { LegalActivity.start(this, LegalActivity.TYPE_TERMS) }
+        b.rowPrivacy.setOnClickListener { LegalActivity.start(this, LegalActivity.TYPE_PRIVACY) }
     }
 
     private fun open(url: String) {

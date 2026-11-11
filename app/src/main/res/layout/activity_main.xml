@@ -4,18 +4,65 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSurface">
+    android:background="@color/oneui_bg">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:liftOnScroll="true">
+        android:background="@color/oneui_bg"
+        app:elevation="0dp"
+        app:liftOnScroll="false">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="@string/app_name" />
+            android:layout_height="280dp"
+            app:contentScrim="@color/oneui_bg"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:titleEnabled="false">
+
+            <LinearLayout
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="?attr/actionBarSize"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.4">
+
+                <TextView
+                    android:id="@+id/largeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/notes_title"
+                    android:textAppearance="@style/TextAppearance.OneUi.LargeTitle" />
+
+                <TextView
+                    android:id="@+id/largeSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:textAppearance="@style/TextAppearance.OneUi.Subtitle" />
+            </LinearLayout>
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="bottom"
+                app:layout_collapseMode="pin">
+
+                <TextView
+                    android:id="@+id/toolbarTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0"
+                    android:text="@string/notes_title"
+                    android:textAppearance="@style/TextAppearance.OneUi.ToolbarTitle" />
+            </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
@@ -28,28 +75,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingStart="10dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="96dp" />
+            android:paddingStart="9dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="9dp"
+            android:paddingBottom="120dp" />
 
         <LinearLayout
             android:id="@+id/empty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="48dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="32dp"
             android:visibility="gone">
 
             <ImageView
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:alpha="0.6"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:alpha="0.5"
                 android:importantForAccessibility="no"
                 android:src="@drawable/ic_notes"
-                app:tint="?attr/colorOutline" />
+                app:tint="@color/oneui_text_secondary" />
 
             <TextView
                 android:id="@+id/emptyText"
@@ -57,8 +105,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:gravity="center"
-                android:textAppearance="?attr/textAppearanceTitleMedium"
-                android:textColor="?attr/colorOnSurfaceVariant" />
+                android:textColor="@color/oneui_text"
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/emptyHint"
@@ -66,19 +114,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
-                android:maxWidth="320dp"
+                android:maxWidth="300dp"
                 android:text="@string/empty_hint"
-                android:textAppearance="?attr/textAppearanceBodyMedium"
-                android:textColor="?attr/colorOutline" />
+                android:textAppearance="@style/TextAppearance.OneUi.Subtitle" />
         </LinearLayout>
     </FrameLayout>
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:text="@string/new_note"
-        app:icon="@drawable/ic_add" />
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="28dp"
+        android:contentDescription="@string/new_note"
+        app:backgroundTint="@color/brand_primary"
+        app:elevation="6dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.OneUi.Circle"
+        app:srcCompat="@drawable/ic_pen"
+        app:tint="@color/brand_on_primary" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -20,6 +19,7 @@ import vn.io.nguyenquocanh.notepad.R
 import vn.io.nguyenquocanh.notepad.data.Note
 import vn.io.nguyenquocanh.notepad.data.NoteRepository
 import vn.io.nguyenquocanh.notepad.databinding.ActivityMainBinding
+import vn.io.nguyenquocanh.notepad.util.OneUi
 import vn.io.nguyenquocanh.notepad.util.applySystemInsets
 
 class MainActivity : AppCompatActivity() {
@@ -40,15 +40,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(b.root)
         b.root.applySystemInsets()
         setSupportActionBar(b.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        OneUi.setupExpandedAppBar(this, b.appBar, b.collapsing, b.header, b.toolbarTitle)
 
         b.recycler.layoutManager =
             StaggeredGridLayoutManager(spanCount(), StaggeredGridLayoutManager.VERTICAL)
         b.recycler.adapter = adapter
-        b.recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dy > 8) b.fab.shrink() else if (dy < -8) b.fab.extend()
-            }
-        })
 
         b.fab.setOnClickListener { openEditor(0L, draw = false) }
         b.fab.setOnLongClickListener {
@@ -74,6 +71,7 @@ class MainActivity : AppCompatActivity() {
     private fun refresh() {
         lifecycleScope.launch {
             allNotes = withContext(Dispatchers.IO) { repo.getAll() }
+            b.largeSubtitle.text = getString(R.string.notes_count, allNotes.size)
             applyFilter()
         }
     }
@@ -112,7 +110,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
-        val searchView = menu.findItem(R.id.action_search).actionView as SearchView
+        val searchItem = menu.findItem(R.id.action_search)
+        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
+                b.appBar.setExpanded(false, true)
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(item: MenuItem): Boolean = true
+        })
+        val searchView = searchItem.actionView as SearchView
         searchView.queryHint = getString(R.string.search_hint)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(text: String?): Boolean {

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="?attr/materialCardViewOutlinedStyle"
+    style="@style/Widget.OneUi.Card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp"
+    android:layout_margin="5dp"
     android:clickable="true"
     android:focusable="true"
-    app:cardCornerRadius="16dp">
+    app:cardCornerRadius="22dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,15 +29,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="14dp">
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
                 android:maxLines="2"
-                android:textAppearance="?attr/textAppearanceTitleMedium" />
+                android:textColor="@color/oneui_text"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/content"
@@ -45,17 +47,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:ellipsize="end"
+                android:lineSpacingMultiplier="1.15"
                 android:maxLines="8"
-                android:textAppearance="?attr/textAppearanceBodyMedium"
-                android:textColor="?attr/colorOnSurfaceVariant" />
+                android:textColor="@color/oneui_text_secondary"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:textAppearance="?attr/textAppearanceLabelSmall"
-                android:textColor="?attr/colorOutline" />
+                android:textColor="@color/oneui_text_secondary"
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

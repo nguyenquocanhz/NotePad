@@ -5,8 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import vn.io.nguyenquocanh.notepad.R
 import vn.io.nguyenquocanh.notepad.databinding.ActivityLegalBinding
+import vn.io.nguyenquocanh.notepad.util.OneUi
 import vn.io.nguyenquocanh.notepad.util.applySystemInsets
 
 /** Màn hình Điều khoản sử dụng / Chính sách quyền riêng tư. */
@@ -20,11 +22,17 @@ class LegalActivity : AppCompatActivity() {
         b.root.applySystemInsets()
         setSupportActionBar(b.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        OneUi.setupExpandedAppBar(this, b.appBar, b.collapsing, b.header, b.toolbarTitle)
 
         val privacy = intent.getStringExtra(EXTRA_TYPE) == TYPE_PRIVACY
-        setTitle(if (privacy) R.string.privacy_title else R.string.terms_title)
-        b.body.text = getText(if (privacy) R.string.privacy_body else R.string.terms_body)
+        val title = getString(if (privacy) R.string.privacy_title else R.string.terms_title)
+        setTitle(title)
+        b.largeTitle.text = title
+        b.toolbarTitle.text = title
         b.updated.text = getString(R.string.legal_updated, getString(R.string.legal_date))
+        b.privacyBadge.isVisible = privacy
+        b.body.text = getText(if (privacy) R.string.privacy_body else R.string.terms_body)
     }
 
     override fun onSupportNavigateUp(): Boolean {

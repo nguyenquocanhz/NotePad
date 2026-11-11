@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="brand_primary">#3949AB</color>
+    <color name="brand_primary">#2F6BEB</color>
     <color name="brand_on_primary">#FFFFFF</color>
-    <color name="brand_primary_container">#DEE0FF</color>
-    <color name="brand_on_primary_container">#00105C</color>
+    <color name="brand_primary_container">#DCE6FF</color>
+    <color name="brand_on_primary_container">#0A2A6B</color>
 
-    <color name="splash_background">#3949AB</color>
+    <!-- One UI palette -->
+    <color name="oneui_bg">#F2F2F2</color>
+    <color name="oneui_card">#FFFFFF</color>
+    <color name="oneui_text">#1A1A1A</color>
+    <color name="oneui_text_secondary">#6B6B6B</color>
+    <color name="oneui_divider">#E6E6E6</color>
+    <color name="oneui_chip">#E3E3E3</color>
+    <color name="oneui_outline">#8E8E8E</color>
+    <color name="oneui_container_low">#F7F7F7</color>
+    <color name="oneui_container_highest">#EDEDED</color>
+    <color name="badge_bg">#EAF1FF</color>
+    <color name="badge_text">#1F4FB8</color>
+
+    <color name="splash_background">#2F6BEB</color>
     <color name="splash_on_background">#FFFFFF</color>
-    <color name="ic_launcher_background">#3949AB</color>
+    <color name="ic_launcher_background">#2F6BEB</color>
     <color name="paper">#FFFFFF</color>
+    <color name="logo_tile">#FFFFFF</color>
 </resources>

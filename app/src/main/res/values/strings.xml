@@ -6,11 +6,13 @@
 
     <!-- Main -->
     <string name="new_note">Ghi chú mới</string>
+    <string name="notes_title">Ghi chú</string>
+    <string name="notes_count">%1$d ghi chú</string>
     <string name="search">Tìm kiếm</string>
     <string name="search_hint">Tìm ghi chú</string>
     <string name="empty_notes">Chưa có ghi chú nào</string>
     <string name="empty_search">Không tìm thấy ghi chú phù hợp</string>
-    <string name="empty_hint">Nhấn Ghi chú mới để bắt đầu. Nhấn giữ nút để mở ngay chế độ vẽ tay.</string>
+    <string name="empty_hint">Nhấn nút bút để tạo ghi chú. Nhấn giữ để mở ngay chế độ vẽ tay.</string>
     <string name="untitled">Không có tiêu đề</string>
     <string name="drawing">Bản vẽ</string>
     <string name="menu_about">Giới thiệu</string>
@@ -43,6 +45,7 @@
     <string name="pen_width">Độ dày nét</string>
     <string name="stylus_only">Chỉ nhận bút cảm ứng</string>
     <string name="stylus_only_on">Chỉ bút cảm ứng mới vẽ được, chạm ngón tay sẽ bị bỏ qua</string>
+    <string name="stylus_only_badge">Chỉ nhận bút cảm ứng: Bật</string>
     <string name="stylus_only_off">Ngón tay và bút đều vẽ được</string>
 
     <!-- About -->
@@ -62,6 +65,7 @@
     <!-- Legal -->
     <string name="terms_title">Điều khoản sử dụng</string>
     <string name="privacy_title">Chính sách quyền riêng tư</string>
+    <string name="privacy_badge">Không thu thập dữ liệu, không cần Internet</string>
     <string name="legal_updated">Cập nhật lần cuối: %1$s</string>
     <string name="legal_date" translatable="false">11/11/2026</string>
 

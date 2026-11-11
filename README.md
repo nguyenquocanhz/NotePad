@@ -53,6 +53,13 @@ git tag v1.0.0
 git push origin v1.0.0
 ```
 
+Hoặc release không cần push tag: commit vào `main` có chuỗi `[release vX.Y.Z]` trong message, workflow tự tạo tag và Release.
+
+```bash
+git commit --allow-empty -m "[release v1.0.1]"
+git push
+```
+
 ### Ký APK release (tuỳ chọn)
 
 Không cấu hình secrets thì release APK là bản unsigned. Để ký, thêm các secret trong **Settings > Secrets and variables > Actions**:

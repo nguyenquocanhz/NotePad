@@ -251,7 +251,7 @@ class EditorActivity : AppCompatActivity() {
             return
         }
 
-        val drawingChanged = d.isDirty
+        val drawingChanged = d.hasUnsavedChanges
         if (drawingChanged) {
             val file = repo.drawingFile(noteId)
             val bmp = d.exportBitmap()

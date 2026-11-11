@@ -63,7 +63,7 @@ class DrawingView @JvmOverloads constructor(
     var stylusOnly: Boolean = false
     var onStateChanged: (() -> Unit)? = null
 
-    var isDirty: Boolean = false
+    var hasUnsavedChanges: Boolean = false
         private set
 
     val canUndo: Boolean get() = strokes.isNotEmpty()
@@ -79,7 +79,7 @@ class DrawingView @JvmOverloads constructor(
         baseBitmap = bitmap
         strokes.clear()
         redoStack.clear()
-        isDirty = false
+        hasUnsavedChanges = false
         rebuild()
         invalidate()
         onStateChanged?.invoke()
@@ -105,7 +105,7 @@ class DrawingView @JvmOverloads constructor(
     }
 
     fun markSaved() {
-        isDirty = false
+        hasUnsavedChanges = false
     }
 
     /** Ảnh PNG trong suốt chứa toàn bộ nét vẽ, null nếu trống. */
@@ -120,7 +120,7 @@ class DrawingView @JvmOverloads constructor(
     }
 
     private fun changed() {
-        isDirty = true
+        hasUnsavedChanges = true
         rebuild()
         invalidate()
         onStateChanged?.invoke()
@@ -224,7 +224,7 @@ class DrawingView @JvmOverloads constructor(
         } else {
             strokes.add(s)
             redoStack.clear()
-            isDirty = true
+            hasUnsavedChanges = true
         }
         invalidate()
         onStateChanged?.invoke()

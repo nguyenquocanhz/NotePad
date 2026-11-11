@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NotePad</string>
+    <string name="tagline">Ghi chú nhanh, viết tay mượt mà</string>
+    <string name="version_format">Phiên bản %1$s</string>
+
+    <!-- Main -->
+    <string name="new_note">Ghi chú mới</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="search_hint">Tìm ghi chú</string>
+    <string name="empty_notes">Chưa có ghi chú nào</string>
+    <string name="empty_search">Không tìm thấy ghi chú phù hợp</string>
+    <string name="empty_hint">Nhấn Ghi chú mới để bắt đầu. Nhấn giữ nút để mở ngay chế độ vẽ tay.</string>
+    <string name="untitled">Không có tiêu đề</string>
+    <string name="drawing">Bản vẽ</string>
+    <string name="menu_about">Giới thiệu</string>
+    <string name="menu_terms">Điều khoản sử dụng</string>
+    <string name="menu_privacy">Chính sách quyền riêng tư</string>
+
+    <!-- Common -->
+    <string name="delete_title">Xóa ghi chú?</string>
+    <string name="delete_message">Ghi chú và bản vẽ đi kèm sẽ bị xóa vĩnh viễn.</string>
+    <string name="delete">Xóa</string>
+    <string name="cancel">Hủy</string>
+    <string name="deleted">Đã xóa ghi chú</string>
+    <string name="share">Chia sẻ</string>
+    <string name="nothing_to_share">Ghi chú chưa có nội dung văn bản</string>
+    <string name="open_link_failed">Không mở được liên kết</string>
+
+    <!-- Editor -->
+    <string name="mode_text">Văn bản</string>
+    <string name="mode_draw">Vẽ tay</string>
+    <string name="hint_title">Tiêu đề</string>
+    <string name="hint_content">Bắt đầu ghi chú…</string>
+    <string name="tool_pen">Bút</string>
+    <string name="tool_eraser">Tẩy</string>
+    <string name="undo">Hoàn tác</string>
+    <string name="redo">Làm lại</string>
+    <string name="clear">Xóa bản vẽ</string>
+    <string name="clear_title">Xóa toàn bộ bản vẽ?</string>
+    <string name="clear_message">Toàn bộ nét vẽ sẽ bị xóa và không thể hoàn tác.</string>
+    <string name="pen_color">Màu bút</string>
+    <string name="pen_width">Độ dày nét</string>
+    <string name="stylus_only">Chỉ nhận bút cảm ứng</string>
+    <string name="stylus_only_on">Chỉ bút cảm ứng mới vẽ được, chạm ngón tay sẽ bị bỏ qua</string>
+    <string name="stylus_only_off">Ngón tay và bút đều vẽ được</string>
+
+    <!-- About -->
+    <string name="about_desc">Ứng dụng ghi chú gọn nhẹ, kết hợp gõ văn bản và viết tay bằng bút cảm ứng. Dữ liệu chỉ lưu trên thiết bị của bạn.</string>
+    <string name="features">Tính năng</string>
+    <string name="about_features">• Ghi chú văn bản, tìm kiếm nhanh\n• Vẽ tay theo lực nhấn của bút cảm ứng (TouchPen, S Pen, USI)\n• Đầu tẩy và nút bên thân bút để tẩy nhanh\n• Con trỏ khi rê bút trên màn hình (hover)\n• Chế độ chỉ nhận bút, chống chạm nhầm lòng bàn tay\n• Viết tay trực tiếp vào ô văn bản (Android 14 trở lên)\n• Hoàn tác, làm lại, nhiều màu bút, độ dày tùy chỉnh\n• Material You, giao diện sáng và tối\n• Không cần Internet, không thu thập dữ liệu</string>
+    <string name="developer">Nhà phát triển</string>
+    <string name="developer_name">Nguyễn Quốc Anh</string>
+    <string name="github">GitHub</string>
+    <string name="website">Website</string>
+    <string name="source">Mã nguồn</string>
+    <string name="copyright">© 2026 Nguyễn Quốc Anh</string>
+    <string name="url_github" translatable="false">https://github.com/nguyenquocanhz</string>
+    <string name="url_website" translatable="false">https://nguyenquocanh.io.vn</string>
+    <string name="url_repo" translatable="false">https://github.com/nguyenquocanhz/NotePad</string>
+
+    <!-- Legal -->
+    <string name="terms_title">Điều khoản sử dụng</string>
+    <string name="privacy_title">Chính sách quyền riêng tư</string>
+    <string name="legal_updated">Cập nhật lần cuối: %1$s</string>
+    <string name="legal_date" translatable="false">11/11/2026</string>
+
+    <string name="terms_body"><b>1. Chấp nhận điều khoản</b>\nKhi cài đặt và sử dụng NotePad, bạn đồng ý với các điều khoản dưới đây. Nếu không đồng ý, vui lòng ngừng sử dụng và gỡ ứng dụng.\n\n<b>2. Giấy phép sử dụng</b>\nNotePad được cung cấp miễn phí cho mục đích cá nhân và thương mại. Mã nguồn được công bố theo giấy phép MIT trên GitHub.\n\n<b>3. Nội dung của bạn</b>\nMọi ghi chú và bản vẽ do bạn tạo thuộc quyền sở hữu của bạn. Bạn tự chịu trách nhiệm về nội dung mình lưu trữ trong ứng dụng.\n\n<b>4. Sao lưu dữ liệu</b>\nDữ liệu chỉ lưu trên thiết bị. Gỡ ứng dụng hoặc xóa dữ liệu ứng dụng sẽ xóa toàn bộ ghi chú. Bạn nên tự sao lưu những nội dung quan trọng.\n\n<b>5. Giới hạn trách nhiệm</b>\nỨng dụng được cung cấp theo hiện trạng, không kèm bảo đảm dưới bất kỳ hình thức nào. Nhà phát triển không chịu trách nhiệm cho mất mát dữ liệu hoặc thiệt hại phát sinh từ việc sử dụng ứng dụng.\n\n<b>6. Thay đổi điều khoản</b>\nĐiều khoản có thể được cập nhật trong các phiên bản sau. Việc tiếp tục sử dụng đồng nghĩa với việc bạn chấp nhận điều khoản mới.\n\n<b>7. Liên hệ</b>\nMọi góp ý hoặc báo lỗi vui lòng gửi qua mục Issues tại github.com/nguyenquocanhz/NotePad.</string>
+
+    <string name="privacy_body"><b>1. Dữ liệu chúng tôi thu thập</b>\nNotePad không thu thập, không gửi đi và không bán bất kỳ dữ liệu cá nhân nào. Ứng dụng không yêu cầu quyền truy cập Internet.\n\n<b>2. Dữ liệu lưu trên thiết bị</b>\nGhi chú văn bản và bản vẽ được lưu trong bộ nhớ riêng của ứng dụng trên thiết bị. Các ứng dụng khác không thể truy cập vùng nhớ này.\n\n<b>3. Quyền ứng dụng</b>\nNotePad không yêu cầu quyền nhạy cảm như vị trí, danh bạ, camera hay micro.\n\n<b>4. Sao lưu hệ thống</b>\nNếu bạn bật sao lưu của Android, dữ liệu ứng dụng có thể được hệ điều hành sao lưu vào tài khoản Google của bạn theo chính sách của Google.\n\n<b>5. Chia sẻ</b>\nNội dung chỉ rời khỏi ứng dụng khi bạn chủ động dùng chức năng Chia sẻ sang ứng dụng khác.\n\n<b>6. Trẻ em</b>\nỨng dụng không thu thập dữ liệu nên phù hợp với mọi lứa tuổi.\n\n<b>7. Liên hệ</b>\nNếu có câu hỏi về quyền riêng tư, vui lòng liên hệ qua github.com/nguyenquocanhz/NotePad.</string>
+</resources>

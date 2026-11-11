@@ -1,0 +1,34 @@
+name: Runner test
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/runner-test.yml
+
+jobs:
+  test:
+    runs-on: instabox-medium
+    timeout-minutes: 10
+    steps:
+      - name: Runner info
+        run: |
+          echo "Runner: $RUNNER_NAME ($RUNNER_OS/$RUNNER_ARCH)"
+          uname -a
+          nproc
+          free -h
+          df -h /
+
+      - name: Tools
+        run: |
+          java -version 2>&1 || echo "java: missing"
+          echo "ANDROID_HOME=${ANDROID_HOME:-missing}"
+          git --version
+          docker --version 2>&1 || echo "docker: missing"
+
+      - name: Network
+        run: |
+          for u in https://github.com https://dl.google.com https://maven.google.com https://repo1.maven.org https://services.gradle.org; do
+            code=$(curl -s -o /dev/null -m 10 -w "%{http_code}" "$u" || echo "fail")
+            echo "$u -> $code"
+          done
